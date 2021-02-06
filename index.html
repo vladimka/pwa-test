@@ -3,10 +3,26 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="manifest" href="manifest.json">
 	<title>PWA</title>
 	<link rel="stylesheet" href="styles.css">
+	<script type="text/javascript">
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js')
+            .then(function(registration) {
+                console.log('Registration successful, scope is:', registration.scope);
+            })
+            .catch(function(error) {
+                console.log('Service worker registration failed, error:', error);
+            });
+        }
+    </script>
 </head>
 <body>
-	<h1>Hello World</h1>
+	<div class="wrapper">
+		<h1 id="balance">Balance: 0$</h1>
+		<button id="work">Work</button>
+	</div>
+	<script src="js/index.js"></script>
 </body>
 </html>
