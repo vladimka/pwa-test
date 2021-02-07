@@ -66,12 +66,6 @@ function fetchAndCache(request) {
             response.headers.get('content-type').indexOf("text/css") >= 0) {
         cur_cache = CURRENT_CACHES.css;
       } else if (response.headers.get('content-type') && 
-            response.headers.get('content-type').indexOf("font") >= 0) {
-        cur_cache = CURRENT_CACHES.font;
-      } else if (response.headers.get('content-type') && 
-            response.headers.get('content-type').indexOf("image") >= 0) {
-        cur_cache = CURRENT_CACHES.image;
-      } else if (response.headers.get('content-type') && 
             response.headers.get('content-type').indexOf("text") >= 0) {
         cur_cache = CURRENT_CACHES.site;
       }

@@ -1,15 +1,19 @@
-let balance = 0;
 let balanceTx = document.getElementById('balance');
+let upgrade1CostTx = document.querySelector('#upgrade1>p>span#cost');
 
-document.body.onload = () => {
-	if(localStorage.getItem('balance') == null)
+document.getElementById('work').addEventListener('click', () => config.balance += config.coinsPerClick);
+document.querySelector('#upgrade1>.upgrade-button').addEventListener('click', e => {
+	if(config.balance < config.upgrade1Cost)
 		return;
 
-	balance = parseInt(localStorage.getItem('balance'));
-	balanceTx.innerText = `Balance: ${balance}$`;
+	config.balance -= config.upgrade1Cost;
+	config.coinsPerClick *= 1.7;
+	config.upgrade1Cost *= 1.17;
+});
+
+function render(){
+	balanceTx.innerText = `Balance: ${config.balance.toFixed(2)}$`;
+	upgrade1CostTx.innerText = config.upgrade1Cost.toFixed(2);
 }
 
-document.getElementById('work').addEventListener('click', () => {
-	balanceTx.innerText = `Balance: ${++balance}$`;
-	localStorage.setItem('balance', balance);
-});
+setInterval(() => render(), 100);
